@@ -1,0 +1,30 @@
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  padding: 20px 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.site-header__title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.site-header__auth {
+  a {
+    padding: 0 5px;
+  }
+}
+
+.site-header__loggedIn {
+  display: flex;
+  align-items: center;
+}
+
+.site-header__user-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

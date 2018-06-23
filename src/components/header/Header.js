@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
+import './Header.css';
 
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -16,18 +17,22 @@ class Header extends Component {
 
   componentDidMount() {
     auth.onAuthStateChanged((user) => {
-      console.log(user ? user.displayName : 'no user data')
       this.setState(() => {
+
+        console.log(user)
+
         return {
           isLoggedIn: user ? true : false,
-          userName: user ? user.displayName : ''
+          userName: user ? user.displayName : '',
+          userImage: user ? user.photoURL : '',
+          auth: false
         };
       });
     });
   }
 
   signIn = () => {
-    auth.signInWithPopup(provider);
+    auth.signInWithRedirect(provider);
   }
 
   signOut = () => {
@@ -36,13 +41,21 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
-        {!this.state.isLoggedIn &&
-          <p><a href="#signin" onClick={this.signIn}>Sign In</a></p>
-        }
+      <div className='site-header'>
+        <div className='site-header__title'>The Contractor's Diary</div>
 
-        {this.state.isLoggedIn &&
-          <p><a href="#signout" onClick={this.signOut}>Welcome {this.state.userName}</a></p>}
+        <div className='site-header__auth'>
+          {!this.state.isLoggedIn &&
+            <a href='' onClick={this.signIn}>Sign In</a>
+          }
+
+          {this.state.isLoggedIn &&
+            <div className='site-header__loggedIn'>
+              <img className='site-header__user-icon' src={this.state.userImage}/>
+              <a href='' onClick={this.signOut}>Sign out</a>
+            </div>
+          }
+        </div>
       </div>
     );
   }
