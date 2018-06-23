@@ -1,0 +1,23 @@
+.splash-screen {
+  padding: 40px 10px 10px;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user__figcaption {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.user__icon {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solid lightgray;
+  margin-bottom: 20px;
+  box-shadow: lightgrey 0px 0px 30px;
+}

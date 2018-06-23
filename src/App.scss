@@ -5,6 +5,15 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+img {
+  display: block;
+  width: 100%;
+}
+
+small {
+  font-size: 0.9em;
+}
+
 a {
   text-decoration: none;
   &:hover {
