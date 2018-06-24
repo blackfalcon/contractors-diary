@@ -42,13 +42,13 @@ class Header extends Component {
 
         <div className='site-header__auth'>
           {!this.state.isLoggedIn &&
-            <a href='' onClick={this.signIn}>Sign In</a>
+            <a href='#' onClick={this.signIn}>Sign In</a>
           }
 
           {this.state.isLoggedIn &&
             <div className='site-header__loggedIn'>
               <img alt='user icon' className='site-header__user-icon' src={this.state.userImage}/>
-              <a href='' onClick={this.signOut}>Sign out</a>
+              <a href='#' onClick={this.signOut}>Sign out</a>
             </div>
           }
         </div>
