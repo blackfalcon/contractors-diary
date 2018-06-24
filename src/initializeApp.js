@@ -7,4 +7,4 @@ firebase.initializeApp({
 });
 
 // Validate that .env variables are seen in the app
-console.log(process.env.REACT_APP_API_KEY)
+// console.log(process.env.REACT_APP_API_KEY)

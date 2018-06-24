@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
   padding: 20px 10px;
   border-bottom: 1px solid lightgray;
 }
@@ -10,6 +9,15 @@
 .site-header__title {
   font-weight: bold;
   font-size: 18px;
+
+  a {
+    color: black;
+
+    &:active,
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .site-header__auth {
@@ -18,13 +26,28 @@
   }
 }
 
-.site-header__loggedIn {
+.site-header__loggedIn,
+.site-header__loggedOut {
+  background-color: orange;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 15px 8px 10px;
   display: flex;
   align-items: center;
+
+  a {
+    &,
+    &:hover,
+    &:active {
+      color: white;
+      text-decoration: none;
+    }
+  }
 }
 
 .site-header__user-icon {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  margin-right: 5px;
 }

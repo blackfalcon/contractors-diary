@@ -1,0 +1,20 @@
+.clients__container {
+  display: flex;
+  height: calc(100vh - 250px);
+}
+
+.clients__data-list {
+  flex-basis: 100%;
+  padding: 0 15px 0 0;
+  border-right: 1px solid lightgray;
+}
+
+.clients__data-entry {
+  padding: 0 0 0 20px;
+}
+
+.clients__header {
+  font-weight: bold;
+  margin-bottom: 1em;
+  font-size: 1.1em;
+}

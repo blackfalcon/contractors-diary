@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+import { Link } from 'react-router-dom';
 import './header.css';
+
+const defaultUserImage = 'http://www.inkwazilearning.co.za/wp-content/uploads/2014/11/user-icon-default.jpg';
 
 class Header extends Component {
   constructor(props) {
@@ -8,20 +10,18 @@ class Header extends Component {
     this.state = {
       isLoggedIn: false,
       userName: '',
-      userImage: ''
+      userImage: defaultUserImage
     }
   }
 
   componentDidMount() {
     this.props.auth.onAuthStateChanged((user) => {
       this.setState(() => {
-
-        console.log(user)
-
+        //console.log(user)
         return {
           isLoggedIn: user ? true : false,
           userName: user ? user.displayName : '',
-          userImage: user ? user.photoURL : ''
+          userImage: user ? user.photoURL : defaultUserImage
         };
       });
     });
@@ -38,17 +38,22 @@ class Header extends Component {
   render() {
     return (
       <div className='site-header'>
-        <div className='site-header__title'>The Contractor's Diary</div>
+        <div className='site-header__title'>
+          <Link to='/'>The Contractor's Diary</Link>
+        </div>
 
         <div className='site-header__auth'>
           {!this.state.isLoggedIn &&
-            <a href='#' onClick={this.signIn}>Sign In</a>
+            <div className='site-header__loggedOut' onClick={this.signIn}>
+              <img alt='user icon' className='site-header__user-icon' src={this.state.userImage}/>
+              <p>Sign In</p>
+            </div>
           }
 
           {this.state.isLoggedIn &&
-            <div className='site-header__loggedIn'>
+            <div className='site-header__loggedIn' onClick={this.signOut}>
               <img alt='user icon' className='site-header__user-icon' src={this.state.userImage}/>
-              <a href='#' onClick={this.signOut}>Sign out</a>
+              <a href='/'>Sign out</a>
             </div>
           }
         </div>

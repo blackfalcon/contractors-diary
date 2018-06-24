@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import firebase from 'firebase';
 import './splash.css';
 
 const defaultUser = 'Unknown';
@@ -10,6 +9,7 @@ class Splash extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userLoggin: false,
       userName: defaultUser,
       userImage: defaultUserImage
     }
@@ -18,10 +18,9 @@ class Splash extends Component {
   componentDidMount() {
     this.props.auth.onAuthStateChanged((user) => {
       this.setState(() => {
-
-        console.log(user)
-
+        //console.log(user)
         return {
+          userLoggin: user ? true : false,
           userName: user ? user.displayName : defaultUser,
           userImage: user ? user.photoURL : defaultUserImage
         };
@@ -34,13 +33,21 @@ class Splash extends Component {
       <div className='splash-screen'>
         <figure className='user'>
           <img alt='user icon' className='user__icon' src={this.state.userImage}/>
-          <figcaption className='user__figcaption'>Hi {this.state.userName.split(' ')[0]}!</figcaption>
-          {!this.state.userName ?
+          {this.state.userLoggin &&
+            <figcaption className='user__figcaption'>Hi {this.state.userName.split(' ')[0]}!</figcaption>
+          }
+          {!this.state.userLoggin ?
             <small>Please log in!</small>
             :
             <small>Please select an option below</small>
           }
         </figure>
+
+        {this.state.userLoggin &&
+          <section className='app-actions'>
+            <Link className='btn' to='clients'>Client's List</Link>
+          </section>
+        }
       </div>
     );
   }

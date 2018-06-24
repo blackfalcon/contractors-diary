@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'reset-css';
 import './App.css';
 import Header from './components/header/Header';
 import Splash from './components/splash/Splash';
+import Clients from './components/clients/Clients';
 import PageNotFound from './components/pageNotFound/PageNotFound';
 
 const auth = firebase.auth();
@@ -20,6 +21,7 @@ class App extends Component {
             <Switch>
 
               <Route exact path='/' render={() => <Splash auth={auth} />} />
+              <Route path='/clients' component={Clients}/>
               <Route component={PageNotFound}/>
 
             </Switch>
